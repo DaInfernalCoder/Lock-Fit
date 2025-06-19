@@ -9,28 +9,7 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  ArrowLeft, 
-  GraduationCap, 
-  Clock, 
-  Target, 
-  RefreshCw, 
-  Lock, 
-  Smartphone, 
-  Key, 
-  Heart, 
-  CheckCircle, 
-  Bell, 
-  AlertTriangle, 
-  Crown, 
-  Headphones, 
-  Shield, 
-  FileText, 
-  Trash2, 
-  ChevronRight,
-  ExternalLink,
-  ShieldCheck
-} from 'lucide-react-native';
+import { ArrowLeft, GraduationCap, Clock, Target, RefreshCw, Lock, Smartphone, Key, Heart, CircleCheck as CheckCircle, Bell, TriangleAlert as AlertTriangle, Crown, Headphones, Shield, FileText, Trash2, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react-native';
 
 interface ToggleSettingProps {
   icon: React.ComponentType<any>;
