@@ -9,7 +9,28 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowLeft, GraduationCap, Clock, Target, RefreshCw, Lock, Smartphone, Key, Heart, CircleCheck as CheckCircle, Bell, TriangleAlert as AlertTriangle, Crown, Headphones, Shield, FileText, Trash2, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react-native';
+import {
+  ArrowLeft,
+  GraduationCap,
+  Clock,
+  Target,
+  RefreshCw,
+  Lock,
+  Smartphone,
+  Key,
+  Heart,
+  CircleCheck as CheckCircle,
+  Bell,
+  TriangleAlert as AlertTriangle,
+  Crown,
+  Headphones,
+  Shield,
+  FileText,
+  Trash2,
+  ChevronRight,
+  ExternalLink,
+  ShieldCheck,
+} from 'lucide-react-native';
 
 interface ToggleSettingProps {
   icon: React.ComponentType<any>;
@@ -32,13 +53,13 @@ interface MenuItemProps {
   badge?: React.ReactNode;
 }
 
-const ToggleSetting: React.FC<ToggleSettingProps> = ({ 
-  icon: Icon, 
-  title, 
-  subtitle, 
-  value, 
+const ToggleSetting: React.FC<ToggleSettingProps> = ({
+  icon: Icon,
+  title,
+  subtitle,
+  value,
   onValueChange,
-  iconColor = "#6366F1"
+  iconColor = '#6366F1',
 }) => (
   <View style={styles.settingRow}>
     <View style={styles.settingInfo}>
@@ -58,29 +79,33 @@ const ToggleSetting: React.FC<ToggleSettingProps> = ({
   </View>
 );
 
-const MenuItem: React.FC<MenuItemProps> = ({ 
-  icon: Icon, 
-  title, 
-  subtitle, 
+const MenuItem: React.FC<MenuItemProps> = ({
+  icon: Icon,
+  title,
+  subtitle,
   onPress,
   showChevron = true,
   showExternal = false,
-  textColor = "#FFFFFF",
-  iconColor = "#6366F1",
-  badge
+  textColor = '#FFFFFF',
+  iconColor = '#6366F1',
+  badge,
 }) => (
   <TouchableOpacity style={styles.menuItem} onPress={onPress}>
     <View style={styles.menuItemLeft}>
       <Icon size={20} color={iconColor} />
       <View style={styles.menuItemText}>
-        <Text style={[styles.menuItemTitle, { color: textColor }]}>{title}</Text>
+        <Text style={[styles.menuItemTitle, { color: textColor }]}>
+          {title}
+        </Text>
         {subtitle && <Text style={styles.menuItemSubtitle}>{subtitle}</Text>}
       </View>
     </View>
     <View style={styles.menuItemRight}>
       {badge}
       {showExternal && <ExternalLink size={16} color="#9CA3AF" />}
-      {showChevron && !showExternal && <ChevronRight size={16} color="#9CA3AF" />}
+      {showChevron && !showExternal && (
+        <ChevronRight size={16} color="#9CA3AF" />
+      )}
     </View>
   </TouchableOpacity>
 );
@@ -150,8 +175,10 @@ export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
@@ -164,10 +191,15 @@ export default function SettingsScreen() {
         </View>
 
         {/* Profile Summary */}
-        <TouchableOpacity style={styles.profileSummary} onPress={handleProfileEdit}>
+        <TouchableOpacity
+          style={styles.profileSummary}
+          onPress={handleProfileEdit}
+        >
           <View style={styles.profileSummaryContent}>
-            <Image 
-              source={{ uri: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=1' }}
+            <Image
+              source={{
+                uri: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=1',
+              }}
               style={styles.profileImage}
             />
             <View style={styles.profileInfo}>
@@ -333,6 +365,36 @@ export default function SettingsScreen() {
             />
           </View>
         </View>
+
+        {/* Developer Tools - Only shown in development */}
+        {__DEV__ && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🛠️ Developer Tools</Text>
+            <View style={styles.sectionCard}>
+              <MenuItem
+                icon={Lock}
+                title="Go to Sign In"
+                subtitle="Test authentication flow"
+                onPress={() => {
+                  // Navigate to sign-in screen
+                  require('expo-router').router.push('/(auth)/sign-in');
+                }}
+                iconColor="#F97316"
+              />
+              <View style={styles.divider} />
+              <MenuItem
+                icon={Trash2}
+                title="Clear Auth Cache"
+                subtitle="Reset authentication state"
+                onPress={() => {
+                  // TODO: Clear auth cache when implemented
+                  console.log('Auth cache cleared');
+                }}
+                iconColor="#EF4444"
+              />
+            </View>
+          </View>
+        )}
 
         {/* App Info */}
         <View style={styles.appInfoSection}>
