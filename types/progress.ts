@@ -48,3 +48,59 @@ export interface ProgressStats {
   bestStreak: number;
   focusArea: string;
 }
+
+// New types for body highlighting and workout tracking
+export interface BodyPart {
+  slug: string;
+  intensity: number;
+  side?: 'left' | 'right';
+}
+
+export interface MuscleDetail {
+  id: string;
+  name: string;
+  displayName: string;
+  group: string;
+  exercises: string[];
+  lastWorked?: string;
+  sessionsThisMonth: number;
+  targetMuscles: string[];
+  synergistMuscles: string[];
+}
+
+export interface WorkoutSession {
+  id: string;
+  startTime: Date;
+  endTime?: Date;
+  isActive: boolean;
+  exercises: ActiveExercise[];
+  activeMuscles: string[];
+  totalDuration: number;
+  caloriesBurned: number;
+}
+
+export interface ActiveExercise {
+  id: string;
+  name: string;
+  muscleGroups: string[];
+  sets: ExerciseSet[];
+  isActive: boolean;
+  startTime: Date;
+  endTime?: Date;
+}
+
+export interface ExerciseSet {
+  id: string;
+  reps: number;
+  weight?: number;
+  duration?: number;
+  completed: boolean;
+  timestamp: Date;
+}
+
+export interface BodyHighlighterData {
+  activeMuscles: BodyPart[];
+  selectedMuscle?: MuscleDetail;
+  workoutSession?: WorkoutSession;
+  isWorkoutActive: boolean;
+}

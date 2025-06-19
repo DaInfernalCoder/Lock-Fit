@@ -12,7 +12,7 @@ import { ArrowLeft, Calendar, Share2 } from 'lucide-react-native';
 import { TimePeriodToggle } from '@/components/progress/TimePeriodToggle';
 import { StreakTracker } from '@/components/progress/StreakTracker';
 import { PerformanceMetrics } from '@/components/progress/PerformanceMetrics';
-import { MuscleGroupActivity } from '@/components/progress/MuscleGroupActivity';
+import { BodyHighlighter } from '@/components/workout/BodyHighlighter';
 import { MotivationalFeedback } from '@/components/progress/MotivationalFeedback';
 import { useProgressData } from '@/hooks/useProgressData';
 import { TimePeriod } from '@/types/progress';
@@ -46,8 +46,10 @@ export default function ProgressScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error || 'Failed to load progress data'}</Text>
-          <TouchableOpacity 
+          <Text style={styles.errorText}>
+            {error || 'Failed to load progress data'}
+          </Text>
+          <TouchableOpacity
             style={styles.retryButton}
             onPress={() => window.location.reload()}
           >
@@ -60,11 +62,14 @@ export default function ProgressScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.backButton}
               accessibilityRole="button"
               accessibilityLabel="Go back"
@@ -76,9 +81,9 @@ export default function ProgressScreen() {
               <Text style={styles.headerSubtitle}>Your fitness journey</Text>
             </View>
           </View>
-          
+
           <View style={styles.headerActions}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.headerButton}
               onPress={handleCalendar}
               accessibilityRole="button"
@@ -86,7 +91,7 @@ export default function ProgressScreen() {
             >
               <Calendar size={20} color="#9CA3AF" />
             </TouchableOpacity>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.headerButton}
               onPress={handleShare}
               accessibilityRole="button"
@@ -106,8 +111,12 @@ export default function ProgressScreen() {
         {/* Streak Tracker */}
         <StreakTracker streakData={progressData.streak} />
 
-        {/* Muscle Group Activity */}
-        <MuscleGroupActivity muscleGroups={progressData.muscleGroups} />
+        {/* Body Highlighter Workout */}
+        <BodyHighlighter
+          onMuscleSelect={(muscle) => console.log('Selected muscle:', muscle)}
+          onWorkoutStart={() => console.log('Workout started')}
+          onWorkoutEnd={() => console.log('Workout ended')}
+        />
 
         {/* Performance Metrics */}
         <PerformanceMetrics metrics={progressData.performanceMetrics} />
