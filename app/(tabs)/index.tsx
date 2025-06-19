@@ -10,22 +10,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  Bell, 
-  Lock, 
-  Unlock,
-  Dumbbell, 
-  Clock, 
-  Flame, 
-  Target, 
-  TrendingUp,
-  Quote,
-  Play,
-  ChevronRight,
-  Calendar,
-  Award,
-  Activity
-} from 'lucide-react-native';
+import { Bell, Lock, Clock as Unlock, Dumbbell, Clock, Flame, Target, TrendingUp, Quote, Play, ChevronRight, Calendar, Award, Activity } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
