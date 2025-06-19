@@ -61,6 +61,7 @@ export default function TabLayout() {
         name="auth-test"
         options={{
           title: 'Auth',
+          href: '/(auth)/signin',
           tabBarIcon: ({ size, color }) => (
             <LogIn size={size} color={color} />
           ),
