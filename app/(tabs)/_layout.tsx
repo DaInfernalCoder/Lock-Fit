@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
-import { Chrome as Home, Calendar, BookOpen, Settings, CalendarDays, TrendingUp, LogIn } from 'lucide-react-native';
+import { Chrome as Home, Calendar, BookOpen, Settings, CalendarDays, TrendingUp } from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -54,16 +54,6 @@ export default function TabLayout() {
           title: 'Exercises',
           tabBarIcon: ({ size, color }) => (
             <BookOpen size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="auth-test"
-        options={{
-          title: 'Auth',
-          href: '/(auth)/signin',
-          tabBarIcon: ({ size, color }) => (
-            <LogIn size={size} color={color} />
           ),
         }}
       />
