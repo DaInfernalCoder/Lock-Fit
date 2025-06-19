@@ -144,12 +144,12 @@ export default function SignInScreen() {
 
         {/* Sign Up Link */}
         <View style={styles.signUpContainer}>
-          <Text style={styles.signUpText}>
-            Don&apos;t have an account?{' '}
+          <View style={styles.signUpTextContainer}>
+            <Text style={styles.signUpText}>Don&apos;t have an account? </Text>
             <TouchableOpacity onPress={() => router.push('/(auth)/sign-up')}>
               <Text style={styles.signUpLink}>Sign up</Text>
             </TouchableOpacity>
-          </Text>
+          </View>
         </View>
 
         {/* Legal Info */}
@@ -303,6 +303,10 @@ const styles = StyleSheet.create({
   signUpContainer: {
     alignItems: 'center',
     marginBottom: 16,
+  },
+  signUpTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   signUpText: {
     fontFamily: 'Inter-Regular',
