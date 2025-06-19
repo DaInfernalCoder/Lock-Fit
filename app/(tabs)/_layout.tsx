@@ -2,8 +2,6 @@ import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
 import {
   Chrome as Home,
-  Calendar,
-  BookOpen,
   Settings,
   CalendarDays,
   TrendingUp,
@@ -33,15 +31,6 @@ export default function TabLayout() {
           title: 'Progress',
           tabBarIcon: ({ size, color }) => (
             <TrendingUp size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="workouts"
-        options={{
-          title: 'Workouts',
-          tabBarIcon: ({ size, color }) => (
-            <Calendar size={size} color={color} />
           ),
         }}
       />
