@@ -35,13 +35,15 @@ export const MotivationalFeedback: React.FC<MotivationalFeedbackProps> = ({
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.iconContainer}>
-          <IconComponent size={24} color="#6366F1" />
+          <IconComponent size={24} color="#0070FF" />
         </View>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.message}>{message}</Text>
         {achievement && (
           <View style={styles.achievementBadge}>
-            <Text style={styles.achievementText}>{achievement} Achievement!</Text>
+            <Text style={styles.achievementText}>
+              {achievement} Achievement!
+            </Text>
           </View>
         )}
       </View>
@@ -60,12 +62,12 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(99, 102, 241, 0.2)',
+    borderColor: '#2A2A2A',
   },
   iconContainer: {
     width: 48,
     height: 48,
-    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+    backgroundColor: '#0070FF20',
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   achievementBadge: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,

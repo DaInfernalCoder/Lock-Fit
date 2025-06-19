@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   toggleContainer: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 4,
     flexDirection: 'row',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   toggleButton: {
     flex: 1,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   toggleButtonActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
   },
   toggleText: {
     fontFamily: 'Inter-SemiBold',

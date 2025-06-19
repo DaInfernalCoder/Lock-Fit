@@ -36,7 +36,9 @@ export const StreakTracker: React.FC<StreakTrackerProps> = ({ streakData }) => {
               <Text style={styles.streakLabel}>Day Streak</Text>
               <Text style={styles.fireEmoji}>🔥</Text>
             </View>
-            <Text style={styles.lastMissed}>Last missed: {streakData.lastMissed}</Text>
+            <Text style={styles.lastMissed}>
+              Last missed: {streakData.lastMissed}
+            </Text>
           </View>
           <View style={styles.totalWorkouts}>
             <Text style={styles.totalNumber}>{streakData.totalWorkouts}</Text>
@@ -47,7 +49,9 @@ export const StreakTracker: React.FC<StreakTrackerProps> = ({ streakData }) => {
         <View style={styles.calendarGrid}>
           {streakData.streakDays.map((day, index) => (
             <View key={index} style={styles.dayColumn}>
-              <Text style={[styles.dayDate, day.isToday && styles.dayDateToday]}>
+              <Text
+                style={[styles.dayDate, day.isToday && styles.dayDateToday]}
+              >
                 {day.date}
               </Text>
               <View
@@ -77,11 +81,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   header: {
     flexDirection: 'row',
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
   streakNumber: {
     fontFamily: 'Poppins-Bold',
     fontSize: 32,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   streakLabel: {
     fontFamily: 'Poppins-SemiBold',
@@ -145,26 +149,26 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   dayDateToday: {
-    color: '#6366F1',
+    color: '#0070FF',
     fontFamily: 'Inter-SemiBold',
   },
   dayIndicator: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     alignItems: 'center',
     justifyContent: 'center',
   },
   dayCompleted: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
   },
   dayToday: {
-    backgroundColor: '#22C55E',
+    backgroundColor: '#0070FF',
   },
   todayText: {
     fontFamily: 'Inter-Bold',
     fontSize: 12,
-    color: '#000000',
+    color: '#FFFFFF',
   },
 });

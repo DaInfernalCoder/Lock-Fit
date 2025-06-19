@@ -59,7 +59,7 @@ const ToggleSetting: React.FC<ToggleSettingProps> = ({
   subtitle,
   value,
   onValueChange,
-  iconColor = '#6366F1',
+  iconColor = '#0070FF',
 }) => (
   <View style={styles.settingRow}>
     <View style={styles.settingInfo}>
@@ -72,9 +72,9 @@ const ToggleSetting: React.FC<ToggleSettingProps> = ({
     <Switch
       value={value}
       onValueChange={onValueChange}
-      trackColor={{ false: '#374151', true: '#6366F1' }}
+      trackColor={{ false: '#2A2A2A', true: '#0070FF' }}
       thumbColor="#FFFFFF"
-      ios_backgroundColor="#374151"
+      ios_backgroundColor="#2A2A2A"
     />
   </View>
 );
@@ -87,7 +87,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   showChevron = true,
   showExternal = false,
   textColor = '#FFFFFF',
-  iconColor = '#6366F1',
+  iconColor = '#0070FF',
   badge,
 }) => (
   <TouchableOpacity style={styles.menuItem} onPress={onPress}>
@@ -182,7 +182,7 @@ export default function SettingsScreen() {
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.backButton} onPress={handleGoBack}>
-            <ArrowLeft size={24} color="#6366F1" />
+            <ArrowLeft size={24} color="#0070FF" />
           </TouchableOpacity>
           <View style={styles.headerInfo}>
             <Text style={styles.headerTitle}>Settings</Text>
@@ -433,7 +433,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
@@ -457,13 +457,13 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   profileSummaryContent: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   profileImage: {
     width: 60,
@@ -487,7 +487,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   membershipBadge: {
-    backgroundColor: '#6366F120',
+    backgroundColor: '#0070FF20',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 12,
@@ -496,7 +496,7 @@ const styles = StyleSheet.create({
   membershipText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 12,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   section: {
     marginHorizontal: 24,
@@ -510,10 +510,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   sectionCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
     overflow: 'hidden',
   },
   settingRow: {
@@ -575,7 +575,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     marginLeft: 56,
   },
   appInfoSection: {
@@ -583,12 +583,12 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   appInfoCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   appName: {
     fontFamily: 'Poppins-Bold',
@@ -611,7 +611,7 @@ const styles = StyleSheet.create({
   licensesButton: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   bottomSpacing: {
     height: 100,

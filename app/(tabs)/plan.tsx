@@ -9,7 +9,22 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowLeft, RefreshCw, MoveVertical as MoreVertical, Clock, Dumbbell, Flame, ChevronDown, ChevronUp, Play, Target, Calendar, TrendingUp, Award, Zap } from 'lucide-react-native';
+import {
+  ArrowLeft,
+  RefreshCw,
+  MoveVertical as MoreVertical,
+  Clock,
+  Dumbbell,
+  Flame,
+  ChevronDown,
+  ChevronUp,
+  Play,
+  Target,
+  Calendar,
+  TrendingUp,
+  Award,
+  Zap,
+} from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -43,49 +58,54 @@ const WorkoutPlanScreen: React.FC = () => {
   const exercises: Exercise[] = [
     {
       id: 1,
-      name: "Push-ups",
+      name: 'Push-ups',
       sets: 3,
-      reps: "12-15",
-      image: "https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
-      muscleGroup: "Chest",
-      difficulty: "Beginner"
+      reps: '12-15',
+      image:
+        'https://images.pexels.com/photos/416778/pexels-photo-416778.jpeg?auto=compress&cs=tinysrgb&w=300&h=200',
+      muscleGroup: 'Chest',
+      difficulty: 'Beginner',
     },
     {
       id: 2,
-      name: "Squats",
+      name: 'Squats',
       sets: 4,
-      reps: "15-20",
-      image: "https://images.pexels.com/photos/703012/pexels-photo-703012.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
-      muscleGroup: "Legs",
-      difficulty: "Beginner"
+      reps: '15-20',
+      image:
+        'https://images.pexels.com/photos/703012/pexels-photo-703012.jpeg?auto=compress&cs=tinysrgb&w=300&h=200',
+      muscleGroup: 'Legs',
+      difficulty: 'Beginner',
     },
     {
       id: 3,
-      name: "Plank",
+      name: 'Plank',
       sets: 3,
-      reps: "30-45s",
-      image: "https://images.pexels.com/photos/863926/pexels-photo-863926.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
-      muscleGroup: "Core",
-      difficulty: "Intermediate"
+      reps: '30-45s',
+      image:
+        'https://images.pexels.com/photos/863926/pexels-photo-863926.jpeg?auto=compress&cs=tinysrgb&w=300&h=200',
+      muscleGroup: 'Core',
+      difficulty: 'Intermediate',
     },
     {
       id: 4,
-      name: "Burpees",
+      name: 'Burpees',
       sets: 3,
-      reps: "8-12",
-      image: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
-      muscleGroup: "Full Body",
-      difficulty: "Advanced"
+      reps: '8-12',
+      image:
+        'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=300&h=200',
+      muscleGroup: 'Full Body',
+      difficulty: 'Advanced',
     },
     {
       id: 5,
-      name: "Mountain Climbers",
+      name: 'Mountain Climbers',
       sets: 3,
-      reps: "20-30",
-      image: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
-      muscleGroup: "Core",
-      difficulty: "Intermediate"
-    }
+      reps: '20-30',
+      image:
+        'https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=300&h=200',
+      muscleGroup: 'Core',
+      difficulty: 'Intermediate',
+    },
   ];
 
   const weekDays: DayPlan[] = [
@@ -98,7 +118,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Rest Day',
       duration: 0,
       exercises: [],
-      calories: 0
+      calories: 0,
     },
     {
       id: 1,
@@ -109,7 +129,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Upper Body',
       duration: 45,
       exercises: exercises.slice(0, 3),
-      calories: 320
+      calories: 320,
     },
     {
       id: 2,
@@ -120,7 +140,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Lower Body',
       duration: 40,
       exercises: exercises.slice(1, 4),
-      calories: 280
+      calories: 280,
     },
     {
       id: 3,
@@ -131,7 +151,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Full Body HIIT',
       duration: 35,
       exercises: exercises,
-      calories: 420
+      calories: 420,
     },
     {
       id: 4,
@@ -142,7 +162,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Core Focus',
       duration: 30,
       exercises: exercises.slice(2, 5),
-      calories: 240
+      calories: 240,
     },
     {
       id: 5,
@@ -153,7 +173,7 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Strength',
       duration: 50,
       exercises: exercises.slice(0, 4),
-      calories: 380
+      calories: 380,
     },
     {
       id: 6,
@@ -164,38 +184,44 @@ const WorkoutPlanScreen: React.FC = () => {
       workoutTitle: 'Active Recovery',
       duration: 25,
       exercises: exercises.slice(2, 4),
-      calories: 180
-    }
+      calories: 180,
+    },
   ];
 
   const currentDayPlan = weekDays[selectedDay];
-  const completedDays = weekDays.filter(day => day.isCompleted).length;
+  const completedDays = weekDays.filter((day) => day.isCompleted).length;
   const progressPercentage = (completedDays / 7) * 100;
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Beginner': return '#22C55E';
-      case 'Intermediate': return '#F97316';
-      case 'Advanced': return '#EF4444';
-      default: return '#6B7280';
+      case 'Beginner':
+        return '#0070FF';
+      case 'Intermediate':
+        return '#0070FF';
+      case 'Advanced':
+        return '#FF4D4D';
+      default:
+        return '#6B7280';
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity style={styles.headerButton}>
             <ArrowLeft size={24} color="#FFFFFF" />
           </TouchableOpacity>
-          
+
           <View style={styles.headerCenter}>
             <Text style={styles.headerTitle}>Workout Plan</Text>
             <Text style={styles.headerSubtitle}>Week of June 15-21</Text>
           </View>
-          
+
           <View style={styles.headerActions}>
             <TouchableOpacity style={styles.headerButton}>
               <RefreshCw size={20} color="#9CA3AF" />
@@ -212,28 +238,30 @@ const WorkoutPlanScreen: React.FC = () => {
             <Text style={styles.progressTitle}>Weekly Progress</Text>
             <View style={styles.progressStats}>
               <Text style={styles.progressText}>{completedDays}/7 Days</Text>
-              <Text style={styles.progressPercentage}>{Math.round(progressPercentage)}%</Text>
+              <Text style={styles.progressPercentage}>
+                {Math.round(progressPercentage)}%
+              </Text>
             </View>
           </View>
-          
+
           <View style={styles.progressBarContainer}>
             <View style={styles.progressBarBackground}>
-              <View 
+              <View
                 style={[
                   styles.progressBarFill,
-                  { width: `${progressPercentage}%` }
-                ]} 
+                  { width: `${progressPercentage}%` },
+                ]}
               />
             </View>
           </View>
-          
+
           <View style={styles.progressDetails}>
             <View style={styles.progressDetail}>
-              <Flame size={16} color="#F97316" />
+              <Flame size={16} color="#0070FF" />
               <Text style={styles.progressDetailText}>1,820 cal burned</Text>
             </View>
             <View style={styles.progressDetail}>
-              <Clock size={16} color="#6366F1" />
+              <Clock size={16} color="#0070FF" />
               <Text style={styles.progressDetailText}>165 min active</Text>
             </View>
           </View>
@@ -242,38 +270,48 @@ const WorkoutPlanScreen: React.FC = () => {
         {/* Calendar Strip */}
         <View style={styles.calendarSection}>
           <Text style={styles.sectionTitle}>This Week</Text>
-          
-          <ScrollView 
-            horizontal 
+
+          <ScrollView
+            horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.calendarScrollContent}
           >
             {weekDays.map((dayPlan, index) => (
-              <TouchableOpacity 
+              <TouchableOpacity
                 key={dayPlan.id}
                 style={[
                   styles.calendarDay,
-                  selectedDay === index && styles.calendarDaySelected,
+                  selectedDay === index &&
+                    !dayPlan.isToday &&
+                    styles.calendarDaySelected,
                   dayPlan.isToday && styles.calendarDayToday,
-                  dayPlan.isCompleted && styles.calendarDayCompleted
+                  dayPlan.isCompleted && styles.calendarDayCompleted,
                 ]}
                 onPress={() => setSelectedDay(index)}
               >
-                <Text style={[
-                  styles.calendarDayText,
-                  selectedDay === index && styles.calendarDayTextSelected,
-                  dayPlan.isToday && styles.calendarDayTextToday
-                ]}>
+                <Text
+                  style={[
+                    styles.calendarDayText,
+                    selectedDay === index &&
+                      !dayPlan.isToday &&
+                      styles.calendarDayTextSelected,
+                    dayPlan.isToday && styles.calendarDayTextToday,
+                  ]}
+                >
                   {dayPlan.day}
                 </Text>
-                <Text style={[
-                  styles.calendarDateText,
-                  selectedDay === index && styles.calendarDateTextSelected,
-                  dayPlan.isToday && styles.calendarDateTextToday
-                ]}>
+                <Text
+                  style={[
+                    styles.calendarDateText,
+                    selectedDay === index &&
+                      !dayPlan.isToday &&
+                      styles.calendarDateTextSelected,
+                    dayPlan.isToday && styles.calendarDateTextToday,
+                  ]}
+                >
                   {dayPlan.date}
                 </Text>
-                
+
                 {dayPlan.isCompleted && (
                   <View style={styles.completedIndicator}>
                     <View style={styles.completedDot} />
@@ -289,12 +327,14 @@ const WorkoutPlanScreen: React.FC = () => {
           <View style={styles.workoutPlanCard}>
             <View style={styles.workoutPlanHeader}>
               <View style={styles.workoutPlanInfo}>
-                <Text style={styles.workoutPlanTitle}>{currentDayPlan.workoutTitle}</Text>
+                <Text style={styles.workoutPlanTitle}>
+                  {currentDayPlan.workoutTitle}
+                </Text>
                 <Text style={styles.workoutPlanDate}>
                   {currentDayPlan.day}, June {currentDayPlan.date}
                 </Text>
               </View>
-              
+
               {currentDayPlan.isCompleted && (
                 <View style={styles.completedBadge}>
                   <Text style={styles.completedBadgeText}>✓ Completed</Text>
@@ -306,30 +346,39 @@ const WorkoutPlanScreen: React.FC = () => {
               <>
                 <View style={styles.workoutPlanStats}>
                   <View style={styles.workoutPlanStat}>
-                    <Clock size={16} color="#6366F1" />
-                    <Text style={styles.workoutPlanStatText}>{currentDayPlan.duration} min</Text>
+                    <Clock size={16} color="#0070FF" />
+                    <Text style={styles.workoutPlanStatText}>
+                      {currentDayPlan.duration} min
+                    </Text>
                   </View>
                   <View style={styles.workoutPlanStat}>
-                    <Dumbbell size={16} color="#22C55E" />
-                    <Text style={styles.workoutPlanStatText}>{currentDayPlan.exercises.length} exercises</Text>
+                    <Dumbbell size={16} color="#0070FF" />
+                    <Text style={styles.workoutPlanStatText}>
+                      {currentDayPlan.exercises.length} exercises
+                    </Text>
                   </View>
                   <View style={styles.workoutPlanStat}>
-                    <Flame size={16} color="#F97316" />
-                    <Text style={styles.workoutPlanStatText}>{currentDayPlan.calories} cal</Text>
+                    <Flame size={16} color="#0070FF" />
+                    <Text style={styles.workoutPlanStatText}>
+                      {currentDayPlan.calories} cal
+                    </Text>
                   </View>
                 </View>
 
-                <TouchableOpacity 
+                <TouchableOpacity
                   style={styles.exerciseToggle}
-                  onPress={() => setIsExerciseListVisible(!isExerciseListVisible)}
+                  onPress={() =>
+                    setIsExerciseListVisible(!isExerciseListVisible)
+                  }
                 >
                   <Text style={styles.exerciseToggleText}>
-                    {isExerciseListVisible ? 'Hide' : 'Show'} Exercises ({currentDayPlan.exercises.length})
+                    {isExerciseListVisible ? 'Hide' : 'Show'} Exercises (
+                    {currentDayPlan.exercises.length})
                   </Text>
                   {isExerciseListVisible ? (
-                    <ChevronUp size={20} color="#6366F1" />
+                    <ChevronUp size={20} color="#0070FF" />
                   ) : (
-                    <ChevronDown size={20} color="#6366F1" />
+                    <ChevronDown size={20} color="#0070FF" />
                   )}
                 </TouchableOpacity>
 
@@ -337,25 +386,41 @@ const WorkoutPlanScreen: React.FC = () => {
                   <View style={styles.exercisesList}>
                     {currentDayPlan.exercises.map((exercise, index) => (
                       <View key={exercise.id} style={styles.exerciseItem}>
-                        <Image 
+                        <Image
                           source={{ uri: exercise.image }}
                           style={styles.exerciseImage}
                         />
                         <View style={styles.exerciseInfo}>
-                          <Text style={styles.exerciseName}>{exercise.name}</Text>
+                          <Text style={styles.exerciseName}>
+                            {exercise.name}
+                          </Text>
                           <Text style={styles.exerciseDetails}>
                             {exercise.sets} sets × {exercise.reps} reps
                           </Text>
                           <View style={styles.exerciseMeta}>
-                            <Text style={styles.exerciseMuscle}>{exercise.muscleGroup}</Text>
-                            <View style={[
-                              styles.exerciseDifficulty,
-                              { backgroundColor: getDifficultyColor(exercise.difficulty) + '20' }
-                            ]}>
-                              <Text style={[
-                                styles.exerciseDifficultyText,
-                                { color: getDifficultyColor(exercise.difficulty) }
-                              ]}>
+                            <Text style={styles.exerciseMuscle}>
+                              {exercise.muscleGroup}
+                            </Text>
+                            <View
+                              style={[
+                                styles.exerciseDifficulty,
+                                {
+                                  backgroundColor:
+                                    getDifficultyColor(exercise.difficulty) +
+                                    '20',
+                                },
+                              ]}
+                            >
+                              <Text
+                                style={[
+                                  styles.exerciseDifficultyText,
+                                  {
+                                    color: getDifficultyColor(
+                                      exercise.difficulty
+                                    ),
+                                  },
+                                ]}
+                              >
                                 {exercise.difficulty}
                               </Text>
                             </View>
@@ -369,7 +434,9 @@ const WorkoutPlanScreen: React.FC = () => {
                 <TouchableOpacity style={styles.startWorkoutButton}>
                   <Play size={20} color="#FFFFFF" />
                   <Text style={styles.startWorkoutButtonText}>
-                    {currentDayPlan.isCompleted ? 'View Workout' : 'Start Workout'}
+                    {currentDayPlan.isCompleted
+                      ? 'View Workout'
+                      : 'Start Workout'}
                   </Text>
                 </TouchableOpacity>
               </>
@@ -378,10 +445,11 @@ const WorkoutPlanScreen: React.FC = () => {
             {currentDayPlan.workoutTitle === 'Rest Day' && (
               <View style={styles.restDayContent}>
                 <View style={styles.restDayIcon}>
-                  <Zzz size={32} color="#6366F1" />
+                  <Zzz size={32} color="#0070FF" />
                 </View>
                 <Text style={styles.restDayText}>
-                  Take a well-deserved break! Recovery is just as important as training.
+                  Take a well-deserved break! Recovery is just as important as
+                  training.
                 </Text>
                 <Text style={styles.restDaySubtext}>
                   Light stretching or a gentle walk is recommended.
@@ -394,27 +462,27 @@ const WorkoutPlanScreen: React.FC = () => {
         {/* Quick Stats */}
         <View style={styles.quickStatsSection}>
           <Text style={styles.sectionTitle}>Week Overview</Text>
-          
+
           <View style={styles.quickStatsGrid}>
             <View style={styles.quickStatCard}>
               <View style={styles.quickStatIcon}>
-                <Target size={20} color="#6366F1" />
+                <Target size={20} color="#0070FF" />
               </View>
               <Text style={styles.quickStatValue}>85%</Text>
               <Text style={styles.quickStatLabel}>Goal Progress</Text>
             </View>
-            
+
             <View style={styles.quickStatCard}>
               <View style={styles.quickStatIcon}>
-                <TrendingUp size={20} color="#22C55E" />
+                <TrendingUp size={20} color="#0070FF" />
               </View>
               <Text style={styles.quickStatValue}>+12%</Text>
               <Text style={styles.quickStatLabel}>vs Last Week</Text>
             </View>
-            
+
             <View style={styles.quickStatCard}>
               <View style={styles.quickStatIcon}>
-                <Award size={20} color="#F97316" />
+                <Award size={20} color="#0070FF" />
               </View>
               <Text style={styles.quickStatValue}>Level 8</Text>
               <Text style={styles.quickStatLabel}>Fitness Level</Text>
@@ -425,12 +493,13 @@ const WorkoutPlanScreen: React.FC = () => {
         {/* Regenerate Plan */}
         <View style={styles.regenerateSection}>
           <TouchableOpacity style={styles.regenerateButton}>
-            <Zap size={20} color="#6366F1" />
+            <Zap size={20} color="#0070FF" />
             <Text style={styles.regenerateButtonText}>Generate New Plan</Text>
           </TouchableOpacity>
-          
+
           <Text style={styles.regenerateSubtext}>
-            Create a fresh 7-day workout plan based on your current goals and equipment
+            Create a fresh 7-day workout plan based on your current goals and
+            equipment
           </Text>
         </View>
 
@@ -443,7 +512,14 @@ const WorkoutPlanScreen: React.FC = () => {
 
 // Define Zzz component for rest day
 const Zzz: React.FC<{ size: number; color: string }> = ({ size, color }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+  <View
+    style={{
+      width: size,
+      height: size,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
     <Text style={{ fontSize: size * 0.8, color, fontWeight: 'bold' }}>💤</Text>
   </View>
 );
@@ -467,7 +543,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -492,11 +568,11 @@ const styles = StyleSheet.create({
   progressBanner: {
     marginHorizontal: 24,
     marginBottom: 24,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   progressHeader: {
     flexDirection: 'row',
@@ -520,20 +596,20 @@ const styles = StyleSheet.create({
   progressPercentage: {
     fontFamily: 'Poppins-Bold',
     fontSize: 20,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   progressBarContainer: {
     marginBottom: 16,
   },
   progressBarBackground: {
     height: 8,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     borderRadius: 4,
     overflow: 'hidden',
   },
   progressBarFill: {
     height: '100%',
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     borderRadius: 4,
   },
   progressDetails: {
@@ -565,27 +641,28 @@ const styles = StyleSheet.create({
     paddingRight: 48,
   },
   calendarDay: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 16,
     marginRight: 12,
     minWidth: 60,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
     position: 'relative',
   },
   calendarDaySelected: {
-    backgroundColor: '#6366F1',
-    borderColor: '#6366F1',
+    backgroundColor: '#0070FF',
+    borderColor: '#0070FF',
   },
   calendarDayToday: {
-    borderColor: '#F97316',
+    backgroundColor: '#1E1E1E',
+    borderColor: '#0070FF',
     borderWidth: 2,
   },
   calendarDayCompleted: {
-    backgroundColor: '#0F1F13',
-    borderColor: '#22C55E',
+    backgroundColor: '#1E1E1E',
+    borderColor: '#0070FF',
   },
   calendarDayText: {
     fontFamily: 'Inter-SemiBold',
@@ -597,7 +674,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   calendarDayTextToday: {
-    color: '#F97316',
+    color: '#0070FF',
   },
   calendarDateText: {
     fontFamily: 'Poppins-Bold',
@@ -608,7 +685,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   calendarDateTextToday: {
-    color: '#F97316',
+    color: '#0070FF',
   },
   completedIndicator: {
     position: 'absolute',
@@ -618,7 +695,7 @@ const styles = StyleSheet.create({
   completedDot: {
     width: 8,
     height: 8,
-    backgroundColor: '#22C55E',
+    backgroundColor: '#0070FF',
     borderRadius: 4,
   },
   workoutPlanSection: {
@@ -626,11 +703,11 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   workoutPlanCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   workoutPlanHeader: {
     flexDirection: 'row',
@@ -653,7 +730,7 @@ const styles = StyleSheet.create({
     color: '#9CA3AF',
   },
   completedBadge: {
-    backgroundColor: '#22C55E20',
+    backgroundColor: '#0070FF20',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -661,13 +738,13 @@ const styles = StyleSheet.create({
   completedBadgeText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 12,
-    color: '#22C55E',
+    color: '#0070FF',
   },
   workoutPlanStats: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 20,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     borderRadius: 16,
     paddingVertical: 16,
   },
@@ -686,20 +763,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#374151',
+    borderBottomColor: '#2A2A2A',
     marginBottom: 16,
   },
   exerciseToggleText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   exercisesList: {
     marginBottom: 20,
   },
   exerciseItem: {
     flexDirection: 'row',
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     borderRadius: 12,
     padding: 12,
     marginBottom: 12,
@@ -746,7 +823,7 @@ const styles = StyleSheet.create({
     fontSize: 9,
   },
   startWorkoutButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -766,7 +843,7 @@ const styles = StyleSheet.create({
   restDayIcon: {
     width: 80,
     height: 80,
-    backgroundColor: '#6366F120',
+    backgroundColor: '#0070FF20',
     borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
@@ -795,18 +872,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   quickStatCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 16,
     width: (width - 72) / 3,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   quickStatIcon: {
     width: 40,
     height: 40,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
@@ -830,7 +907,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   regenerateButton: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -838,13 +915,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#6366F1',
+    borderColor: '#0070FF',
     marginBottom: 12,
   },
   regenerateButtonText: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 16,
-    color: '#6366F1',
+    color: '#0070FF',
     marginLeft: 8,
   },
   regenerateSubtext: {

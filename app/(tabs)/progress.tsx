@@ -35,7 +35,7 @@ export default function ProgressScreen() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#6366F1" />
+          <ActivityIndicator size="large" color="#0070FF" />
           <Text style={styles.loadingText}>Loading your progress...</Text>
         </View>
       </SafeAreaView>
@@ -74,7 +74,7 @@ export default function ProgressScreen() {
               accessibilityRole="button"
               accessibilityLabel="Go back"
             >
-              <ArrowLeft size={24} color="#6366F1" />
+              <ArrowLeft size={24} color="#0070FF" />
             </TouchableOpacity>
             <View style={styles.headerInfo}>
               <Text style={styles.headerTitle}>Progress</Text>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   retryButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 12,

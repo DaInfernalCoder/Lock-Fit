@@ -25,7 +25,7 @@ import {
   Zap,
   Activity,
 } from 'lucide-react-native';
-import Body from 'react-native-body-highlighter';
+import Body, { ExtendedBodyPart } from 'react-native-body-highlighter';
 import { useWorkoutSession } from '@/hooks/useWorkoutSession';
 import { BodyPart, MuscleDetail } from '@/types/progress';
 
@@ -66,9 +66,24 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
 
   // Handle body part press with error handling
   const onBodyPartPress = useCallback(
-    (bodyPart: BodyPart, pressedSide?: 'left' | 'right') => {
+    (bodyPart: ExtendedBodyPart, pressedSide?: 'left' | 'right') => {
       try {
-        handleMusclePress(bodyPart, pressedSide);
+        // Ensure slug exists before proceeding
+        if (!bodyPart.slug) {
+          console.warn('Body part pressed without slug');
+          return;
+        }
+
+        // Convert ExtendedBodyPart to our BodyPart type
+        const localBodyPart: BodyPart = {
+          slug: bodyPart.slug,
+          intensity: bodyPart.intensity || 1,
+          side: bodyPart.side,
+          color: bodyPart.color,
+          path: bodyPart.path,
+        };
+
+        handleMusclePress(localBodyPart, pressedSide);
         setShowMuscleDetail(true);
         onMuscleSelect?.(muscleDatabase[bodyPart.slug]);
       } catch (error) {
@@ -143,9 +158,23 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
     [isWorkoutActive, startExercise]
   );
 
-  // Get intensity colors
+  // Convert BodyPart[] to ExtendedBodyPart[] for library compatibility
+  const convertToExtendedBodyParts = useCallback(
+    (bodyParts: BodyPart[]): ExtendedBodyPart[] => {
+      return bodyParts.map((part) => ({
+        slug: part.slug,
+        intensity: part.intensity,
+        side: part.side,
+        color: part.color,
+        path: part.path,
+      }));
+    },
+    []
+  );
+
+  // Get intensity colors - using blue theme
   const getIntensityColors = () => {
-    return ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FECA57'];
+    return ['#0070FF', '#0070FF80', '#0070FF60', '#0070FF40', '#0070FF20'];
   };
 
   // Format workout time
@@ -172,7 +201,7 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
             onPress={toggleSide}
             disabled={isLoading}
           >
-            <RotateCcw size={20} color="#6366F1" />
+            <RotateCcw size={20} color="#0070FF" />
           </TouchableOpacity>
         </View>
       </View>
@@ -181,7 +210,7 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
       {isWorkoutActive && workoutSession && (
         <View style={styles.workoutStatus}>
           <View style={styles.statusInfo}>
-            <Activity size={16} color="#22C55E" />
+            <Activity size={16} color="#0070FF" />
             <Text style={styles.statusText}>
               Active • {formatWorkoutTime(workoutSession.startTime)}
             </Text>
@@ -200,7 +229,7 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
       <View style={styles.bodyContainer}>
         {isLoading && (
           <View style={styles.loadingOverlay}>
-            <ActivityIndicator size="large" color="#6366F1" />
+            <ActivityIndicator size="large" color="#0070FF" />
             <Text style={styles.loadingText}>Rotating model...</Text>
           </View>
         )}
@@ -221,13 +250,13 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
           ]}
         >
           <Body
-            data={activeMuscles}
+            data={convertToExtendedBodyParts(activeMuscles)}
             onBodyPartPress={onBodyPartPress}
             colors={getIntensityColors()}
             side={side}
             gender={gender}
             scale={scale}
-            border="#374151"
+            border="#2A2A2A"
           />
         </Animated.View>
 
@@ -366,21 +395,21 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
                 <View style={styles.muscleInfo}>
                   <View style={styles.muscleStats}>
                     <View style={styles.muscleStat}>
-                      <Target size={16} color="#6366F1" />
+                      <Target size={16} color="#0070FF" />
                       <Text style={styles.muscleStatValue}>
                         {selectedMuscle.group}
                       </Text>
                       <Text style={styles.muscleStatLabel}>Group</Text>
                     </View>
                     <View style={styles.muscleStat}>
-                      <Activity size={16} color="#22C55E" />
+                      <Activity size={16} color="#0070FF" />
                       <Text style={styles.muscleStatValue}>
                         {selectedMuscle.sessionsThisMonth}
                       </Text>
                       <Text style={styles.muscleStatLabel}>Sessions</Text>
                     </View>
                     <View style={styles.muscleStat}>
-                      <Clock size={16} color="#F97316" />
+                      <Clock size={16} color="#0070FF" />
                       <Text style={styles.muscleStatValue}>
                         {selectedMuscle.lastWorked}
                       </Text>
@@ -392,7 +421,7 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
                     <Text style={styles.sectionTitle}>Common Exercises</Text>
                     {selectedMuscle.exercises.map((exercise, index) => (
                       <View key={index} style={styles.exerciseItem}>
-                        <Zap size={16} color="#6366F1" />
+                        <Zap size={16} color="#0070FF" />
                         <Text style={styles.exerciseText}>{exercise}</Text>
                       </View>
                     ))}
@@ -427,7 +456,7 @@ export const BodyHighlighter: React.FC<BodyHighlighterProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111827',
+    backgroundColor: '#121212',
   },
   header: {
     flexDirection: 'row',
@@ -436,7 +465,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#374151',
+    borderBottomColor: '#2A2A2A',
   },
   headerLeft: {
     flex: 1,
@@ -460,11 +489,11 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   workoutStatus: {
     flexDirection: 'row',
@@ -472,9 +501,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 24,
     paddingVertical: 12,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderBottomWidth: 1,
-    borderBottomColor: '#374151',
+    borderBottomColor: '#2A2A2A',
   },
   statusInfo: {
     flexDirection: 'row',
@@ -483,13 +512,13 @@ const styles = StyleSheet.create({
   statusText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
-    color: '#22C55E',
+    color: '#0070FF',
     marginLeft: 8,
   },
   endWorkoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#EF4444',
+    backgroundColor: '#FF4D4D',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
@@ -512,7 +541,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(17, 24, 39, 0.8)',
+    backgroundColor: 'rgba(18, 18, 18, 0.8)',
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 10,
@@ -533,18 +562,18 @@ const styles = StyleSheet.create({
     right: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   scaleButton: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -566,21 +595,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 16,
     borderTopWidth: 1,
-    borderTopColor: '#374151',
+    borderTopColor: '#2A2A2A',
   },
   modelButton: {
     flex: 1,
     paddingVertical: 12,
     marginHorizontal: 4,
     borderRadius: 12,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
     alignItems: 'center',
   },
   modelButtonActive: {
-    backgroundColor: '#6366F1',
-    borderColor: '#6366F1',
+    backgroundColor: '#0070FF',
+    borderColor: '#0070FF',
   },
   modelButtonText: {
     fontFamily: 'Inter-SemiBold',
@@ -598,7 +627,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     paddingVertical: 16,
     borderRadius: 12,
   },
@@ -612,13 +641,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   exerciseButton: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 8,
     marginRight: 12,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   exerciseButtonText: {
     fontFamily: 'Inter-SemiBold',
@@ -627,7 +656,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: '#111827',
+    backgroundColor: '#121212',
   },
   modalHeader: {
     flexDirection: 'row',
@@ -636,7 +665,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#374151',
+    borderBottomColor: '#2A2A2A',
   },
   modalTitle: {
     fontFamily: 'Poppins-Bold',
@@ -647,11 +676,11 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   modalContent: {
     flex: 1,
@@ -662,12 +691,12 @@ const styles = StyleSheet.create({
   muscleStats: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     paddingVertical: 20,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   muscleStat: {
     alignItems: 'center',
@@ -696,13 +725,13 @@ const styles = StyleSheet.create({
   exerciseItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 12,
     marginBottom: 8,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   exerciseText: {
     fontFamily: 'Inter-Regular',
@@ -718,7 +747,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   synergistMuscle: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,

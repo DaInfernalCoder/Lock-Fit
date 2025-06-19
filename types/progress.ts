@@ -1,3 +1,6 @@
+// Import the Slug type from react-native-body-highlighter
+import { Slug } from 'react-native-body-highlighter';
+
 export interface StreakData {
   currentStreak: number;
   lastMissed: string;
@@ -51,9 +54,15 @@ export interface ProgressStats {
 
 // New types for body highlighting and workout tracking
 export interface BodyPart {
-  slug: string;
+  slug: Slug;
   intensity: number;
   side?: 'left' | 'right';
+  color?: string;
+  path?: {
+    common?: string[];
+    left?: string[];
+    right?: string[];
+  };
 }
 
 export interface MuscleDetail {

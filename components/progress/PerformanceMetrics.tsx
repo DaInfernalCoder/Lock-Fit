@@ -25,21 +25,13 @@ const getIcon = (iconName: string) => {
 };
 
 const getIconColor = (color: string) => {
-  switch (color) {
-    case 'red':
-      return '#EF4444';
-    case 'blue':
-      return '#6366F1';
-    case 'green':
-      return '#22C55E';
-    case 'orange':
-      return '#F97316';
-    default:
-      return '#6366F1';
-  }
+  // Always return the same blue color for consistency
+  return '#0070FF';
 };
 
-export const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({ metrics }) => {
+export const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({
+  metrics,
+}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Performance Metrics</Text>
@@ -81,13 +73,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   metricCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 16,
     width: (width - 64) / 2,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   metricHeader: {
     flexDirection: 'row',

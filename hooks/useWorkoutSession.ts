@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Slug } from 'react-native-body-highlighter';
 import { 
   WorkoutSession, 
   ActiveExercise, 
@@ -219,7 +220,7 @@ export const useWorkoutSession = () => {
     const bodyParts: BodyPart[] = muscleNames.map(muscleName => {
       const intensity = getIntensityForMuscle(muscleName);
       return {
-        slug: muscleName,
+        slug: muscleName as Slug,
         intensity,
       };
     });

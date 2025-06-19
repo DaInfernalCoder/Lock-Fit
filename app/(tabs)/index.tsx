@@ -10,14 +10,50 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Bell, Lock, Clock as Unlock, Dumbbell, Clock, Flame, Target, TrendingUp, Quote, Play, ChevronRight, Calendar, Award, Activity } from 'lucide-react-native';
+import {
+  Bell,
+  Lock,
+  Clock as Unlock,
+  Dumbbell,
+  Clock,
+  Flame,
+  Target,
+  TrendingUp,
+  Quote,
+  Play,
+  ChevronRight,
+  Calendar,
+  Award,
+  Activity,
+} from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
 const progressStats = [
-  { id: 1, label: 'Workouts', value: '12', target: '15', icon: Dumbbell, color: '#6366F1' },
-  { id: 2, label: 'Calories', value: '2,340', target: '3,000', icon: Flame, color: '#F97316' },
-  { id: 3, label: 'Minutes', value: '240', target: '300', icon: Clock, color: '#22C55E' },
+  {
+    id: 1,
+    label: 'Workouts',
+    value: '12',
+    target: '15',
+    icon: Dumbbell,
+    color: '#0070FF',
+  },
+  {
+    id: 2,
+    label: 'Calories',
+    value: '2,340',
+    target: '3,000',
+    icon: Flame,
+    color: '#0070FF',
+  },
+  {
+    id: 3,
+    label: 'Minutes',
+    value: '240',
+    target: '300',
+    icon: Clock,
+    color: '#0070FF',
+  },
 ];
 
 const todayWorkout = {
@@ -33,7 +69,7 @@ const motivationalQuotes = [
   "The only bad workout is the one that didn't happen.",
   "Your body can stand almost anything. It's your mind you have to convince.",
   "Fitness is not about being better than someone else. It's about being better than you used to be.",
-  "The groundwork for all happiness is good health.",
+  'The groundwork for all happiness is good health.',
 ];
 
 export default function HomeScreen() {
@@ -43,19 +79,19 @@ export default function HomeScreen() {
 
   const getCurrentTime = () => {
     const now = new Date();
-    return now.toLocaleTimeString('en-US', { 
-      hour: 'numeric', 
+    return now.toLocaleTimeString('en-US', {
+      hour: 'numeric',
       minute: '2-digit',
-      hour12: true 
+      hour12: true,
     });
   };
 
   const getCurrentDate = () => {
     const now = new Date();
-    return now.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      month: 'long', 
-      day: 'numeric' 
+    return now.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
     });
   };
 
@@ -73,15 +109,17 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#121212" />
-      <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Text style={styles.greeting}>Good Morning</Text>
             <Text style={styles.date}>{getCurrentDate()}</Text>
           </View>
-          
+
           <View style={styles.headerRight}>
             <TouchableOpacity style={styles.notificationButton}>
               <Bell size={24} color="#E5E7EB" />
@@ -91,10 +129,12 @@ export default function HomeScreen() {
                 </View>
               )}
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.profileButton}>
-              <Image 
-                source={{ uri: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1' }}
+              <Image
+                source={{
+                  uri: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
+                }}
                 style={styles.profileImage}
               />
             </TouchableOpacity>
@@ -105,40 +145,46 @@ export default function HomeScreen() {
         <View style={styles.lockStatusContainer}>
           <View style={styles.lockHeader}>
             <Text style={styles.lockTitle}>Phone Status</Text>
-            <View style={[
-              styles.statusBadge,
-              { backgroundColor: isLocked ? '#EF444420' : '#22C55E20' }
-            ]}>
-              <Text style={[
-                styles.statusText,
-                { color: isLocked ? '#EF4444' : '#22C55E' }
-              ]}>
+            <View
+              style={[
+                styles.statusBadge,
+                { backgroundColor: isLocked ? '#FF4D4D20' : '#0070FF20' },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.statusText,
+                  { color: isLocked ? '#FF4D4D' : '#0070FF' },
+                ]}
+              >
                 {isLocked ? 'Locked' : 'Unlocked'}
               </Text>
             </View>
           </View>
-          
+
           <Text style={styles.lockDescription}>
-            {isLocked 
+            {isLocked
               ? 'Distracting apps are blocked until your workout is complete.'
-              : 'Great job! Your apps are now unlocked for today.'
-            }
+              : 'Great job! Your apps are now unlocked for today.'}
           </Text>
-          
+
           <View style={styles.lockActions}>
             <View style={styles.lockInfo}>
               {isLocked ? (
-                <Lock size={20} color="#6366F1" />
+                <Lock size={20} color="#0070FF" />
               ) : (
-                <Unlock size={20} color="#22C55E" />
+                <Unlock size={20} color="#0070FF" />
               )}
               <Text style={styles.lockTime}>
                 {isLocked ? `Until ${getCurrentTime()}` : 'Apps Available'}
               </Text>
             </View>
-            
+
             {isLocked && (
-              <TouchableOpacity style={styles.startWorkoutButton} onPress={handleStartWorkout}>
+              <TouchableOpacity
+                style={styles.startWorkoutButton}
+                onPress={handleStartWorkout}
+              >
                 <Play size={16} color="#FFFFFF" />
                 <Text style={styles.startWorkoutText}>Start Workout</Text>
               </TouchableOpacity>
@@ -154,32 +200,37 @@ export default function HomeScreen() {
               <Text style={styles.viewAllText}>View All</Text>
             </TouchableOpacity>
           </View>
-          
+
           <View style={styles.progressCards}>
             {progressStats.map((stat) => {
               const IconComponent = stat.icon;
               const percentage = getProgressPercentage(stat.value, stat.target);
-              
+
               return (
                 <View key={stat.id} style={styles.progressCard}>
-                  <View style={[styles.progressIcon, { backgroundColor: `${stat.color}20` }]}>
+                  <View
+                    style={[
+                      styles.progressIcon,
+                      { backgroundColor: `${stat.color}20` },
+                    ]}
+                  >
                     <IconComponent size={20} color={stat.color} />
                   </View>
-                  
+
                   <Text style={styles.progressValue}>{stat.value}</Text>
                   <Text style={styles.progressTarget}>of {stat.target}</Text>
                   <Text style={styles.progressLabel}>{stat.label}</Text>
-                  
+
                   <View style={styles.progressBarContainer}>
                     <View style={styles.progressBarBackground}>
-                      <View 
+                      <View
                         style={[
                           styles.progressBarFill,
-                          { 
+                          {
                             width: `${Math.min(percentage, 100)}%`,
-                            backgroundColor: stat.color
-                          }
-                        ]} 
+                            backgroundColor: stat.color,
+                          },
+                        ]}
                       />
                     </View>
                   </View>
@@ -192,34 +243,42 @@ export default function HomeScreen() {
         {/* Today's Workout */}
         <View style={styles.workoutSection}>
           <Text style={styles.sectionTitle}>Today's Workout</Text>
-          
+
           <TouchableOpacity style={styles.workoutCard}>
             <View style={styles.workoutHeader}>
               <Text style={styles.workoutTitle}>{todayWorkout.title}</Text>
               <View style={styles.difficultyBadge}>
-                <Text style={styles.difficultyText}>{todayWorkout.difficulty}</Text>
+                <Text style={styles.difficultyText}>
+                  {todayWorkout.difficulty}
+                </Text>
               </View>
             </View>
-            
+
             <View style={styles.workoutStats}>
               <View style={styles.workoutStat}>
                 <Clock size={16} color="#9CA3AF" />
-                <Text style={styles.workoutStatText}>{todayWorkout.duration}</Text>
+                <Text style={styles.workoutStatText}>
+                  {todayWorkout.duration}
+                </Text>
               </View>
               <View style={styles.workoutStat}>
                 <Target size={16} color="#9CA3AF" />
-                <Text style={styles.workoutStatText}>{todayWorkout.exercises} exercises</Text>
+                <Text style={styles.workoutStatText}>
+                  {todayWorkout.exercises} exercises
+                </Text>
               </View>
               <View style={styles.workoutStat}>
-                <Flame size={16} color="#F97316" />
-                <Text style={styles.workoutStatText}>{todayWorkout.calories}</Text>
+                <Flame size={16} color="#9CA3AF" />
+                <Text style={styles.workoutStatText}>
+                  {todayWorkout.calories}
+                </Text>
               </View>
             </View>
-            
+
             <View style={styles.workoutAction}>
               <TouchableOpacity style={styles.previewButton}>
                 <Text style={styles.previewButtonText}>Preview Workout</Text>
-                <ChevronRight size={16} color="#6366F1" />
+                <ChevronRight size={16} color="#0070FF" />
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
@@ -228,25 +287,25 @@ export default function HomeScreen() {
         {/* Quick Actions */}
         <View style={styles.quickActionsSection}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
-          
+
           <View style={styles.quickActions}>
             <TouchableOpacity style={styles.quickActionCard}>
               <View style={styles.quickActionIcon}>
-                <Calendar size={24} color="#6366F1" />
+                <Calendar size={24} color="#0070FF" />
               </View>
               <Text style={styles.quickActionText}>View Schedule</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.quickActionCard}>
               <View style={styles.quickActionIcon}>
-                <Award size={24} color="#F97316" />
+                <Award size={24} color="#0070FF" />
               </View>
               <Text style={styles.quickActionText}>Achievements</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.quickActionCard}>
               <View style={styles.quickActionIcon}>
-                <Activity size={24} color="#22C55E" />
+                <Activity size={24} color="#0070FF" />
               </View>
               <Text style={styles.quickActionText}>Health Stats</Text>
             </TouchableOpacity>
@@ -256,13 +315,12 @@ export default function HomeScreen() {
         {/* Motivational Quote */}
         <View style={styles.quoteSection}>
           <View style={styles.quoteContainer}>
-            <Quote size={24} color="#6366F1" style={styles.quoteIcon} />
+            <Quote size={24} color="#0070FF" style={styles.quoteIcon} />
             <Text style={styles.quoteText}>"{currentQuote}"</Text>
             <Text style={styles.quoteSubtext}>
-              {isLocked 
-                ? 'Complete today\'s workout to unlock your apps'
-                : 'Keep up the great work!'
-              }
+              {isLocked
+                ? "Complete today's workout to unlock your apps"
+                : 'Keep up the great work!'}
             </Text>
           </View>
         </View>
@@ -316,7 +374,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 4,
     right: 4,
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     width: 18,
     height: 18,
     borderRadius: 9,
@@ -336,16 +394,16 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: '#6366F1',
+    borderColor: '#0070FF',
   },
   lockStatusContainer: {
     marginHorizontal: 24,
     marginBottom: 24,
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   lockHeader: {
     flexDirection: 'row',
@@ -390,7 +448,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   startWorkoutButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#0070FF',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
@@ -421,20 +479,20 @@ const styles = StyleSheet.create({
   viewAllText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
-    color: '#6366F1',
+    color: '#0070FF',
   },
   progressCards: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   progressCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 16,
     width: (width - 72) / 3,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   progressIcon: {
     width: 40,
@@ -467,7 +525,7 @@ const styles = StyleSheet.create({
   },
   progressBarBackground: {
     height: 4,
-    backgroundColor: '#374151',
+    backgroundColor: '#2A2A2A',
     borderRadius: 2,
     overflow: 'hidden',
   },
@@ -480,11 +538,11 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   workoutCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 20,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   workoutHeader: {
     flexDirection: 'row',
@@ -499,7 +557,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   difficultyBadge: {
-    backgroundColor: '#F9731620',
+    backgroundColor: '#0070FF20',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 12,
@@ -507,7 +565,7 @@ const styles = StyleSheet.create({
   difficultyText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 12,
-    color: '#F97316',
+    color: '#0070FF',
   },
   workoutStats: {
     flexDirection: 'row',
@@ -535,7 +593,7 @@ const styles = StyleSheet.create({
   previewButtonText: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 14,
-    color: '#6366F1',
+    color: '#0070FF',
     marginRight: 4,
   },
   quickActionsSection: {
@@ -547,18 +605,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   quickActionCard: {
-    backgroundColor: '#1F2937',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 16,
     width: (width - 72) / 3,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#374151',
+    borderColor: '#2A2A2A',
   },
   quickActionIcon: {
     width: 48,
     height: 48,
-    backgroundColor: '#374151',
+    backgroundColor: '#121212',
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
@@ -575,12 +633,12 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   quoteContainer: {
-    backgroundColor: '#0F172A',
+    backgroundColor: '#000000',
     borderRadius: 20,
     padding: 24,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#1E293B',
+    borderColor: '#2A2A2A',
   },
   quoteIcon: {
     marginBottom: 16,
