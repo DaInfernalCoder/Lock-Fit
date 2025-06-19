@@ -9,22 +9,7 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  ArrowLeft, 
-  RefreshCw, 
-  MoreVertical, 
-  Clock, 
-  Dumbbell, 
-  Flame, 
-  ChevronDown, 
-  ChevronUp, 
-  Play, 
-  Target, 
-  Calendar,
-  TrendingUp,
-  Award,
-  Zap
-} from 'lucide-react-native';
+import { ArrowLeft, RefreshCw, MoveVertical as MoreVertical, Clock, Dumbbell, Flame, ChevronDown, ChevronUp, Play, Target, Calendar, TrendingUp, Award, Zap } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 
