@@ -1,6 +1,13 @@
 import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
-import { Chrome as Home, Settings, CalendarDays } from 'lucide-react-native';
+import {
+  Chrome as Home,
+  Calendar,
+  BookOpen,
+  Settings,
+  CalendarDays,
+  TrendingUp,
+} from 'lucide-react-native';
 
 export default function TabLayout() {
   return (
@@ -18,6 +25,24 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ size, color }) => <Home size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="progress"
+        options={{
+          title: 'Progress',
+          tabBarIcon: ({ size, color }) => (
+            <TrendingUp size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="workouts"
+        options={{
+          title: 'Workouts',
+          tabBarIcon: ({ size, color }) => (
+            <Calendar size={size} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
