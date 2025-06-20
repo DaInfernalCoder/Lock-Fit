@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Eye, EyeOff } from 'lucide-react-native';
+import { Eye, EyeOff, ChevronLeft } from 'lucide-react-native';
 
 export default function SignInScreen() {
   const [email, setEmail] = useState('');
@@ -51,8 +51,21 @@ export default function SignInScreen() {
     Alert.alert('Coming Soon', 'Forgot password will be implemented soon!');
   };
 
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      {/* Back Button */}
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={handleGoBack}
+        hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      >
+        <ChevronLeft size={24} color="#6B7280" />
+      </TouchableOpacity>
+
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
@@ -169,6 +182,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121212',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 60,
+    left: 20,
+    zIndex: 10,
+    padding: 8,
   },
   scrollContainer: {
     flexGrow: 1,

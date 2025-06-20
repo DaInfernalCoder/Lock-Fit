@@ -373,11 +373,11 @@ export default function SettingsScreen() {
             <View style={styles.sectionCard}>
               <MenuItem
                 icon={Lock}
-                title="Go to Sign In"
-                subtitle="Test authentication flow"
+                title="Go to Onboarding"
+                subtitle="Test onboarding flow"
                 onPress={() => {
-                  // Navigate to sign-in screen
-                  require('expo-router').router.push('/(auth)/sign-in');
+                  // Navigate to onboarding screen
+                  require('expo-router').router.push('/(onboarding)/welcome');
                 }}
                 iconColor="#F97316"
               />
